@@ -23,8 +23,18 @@ public class LanguageToolAdapter implements ISpellChecker {
         List<String> result = new ArrayList<>();
 
         for (RuleMatch match : matches) {
-            int line = match.getLine();
-            int col = match.getColumn();
+            int fromPos = match.getFromPos();
+            int line = 1;
+            int col = 1;
+            for (int i = 0; i < fromPos; i++) {
+                if (text.charAt(i) == '\n') {
+                    line++;
+                    col = 1;
+                } else {
+                    col++;
+                }
+            }
+
             String wrong = text.substring(match.getFromPos(), match.getToPos());
             String suggestion = match.getSuggestedReplacements().isEmpty()
                     ? "（无建议）"
