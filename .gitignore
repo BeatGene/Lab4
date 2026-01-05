@@ -1,0 +1,13 @@
+# IDEA配置文件
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# 编译产物
+target/
+out/
+
+# 系统文件
+*.log
+*.tmp
